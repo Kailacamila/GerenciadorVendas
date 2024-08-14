@@ -24,7 +24,7 @@ public class VendaService {
 		}
 		venda.setValorTotal(valorTotal);
 		this.vendaRepositoy.save(venda);
-		return "Venda salva com sucesso!"; //TODO venda zerada?
+		return "Venda salva com sucesso!"; 
 	}
 	
     public String update(Venda venda, long id) {
@@ -35,7 +35,7 @@ public class VendaService {
     
     public Venda findById(long id) {
     	Optional<Venda> optional = this.vendaRepositoy.findById(id);
-    	return optional.orElse(null); //mesmo que if else
+    	return optional.orElse(null); 
     }
     
     public List<Venda> findAll(){

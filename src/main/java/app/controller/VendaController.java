@@ -69,15 +69,12 @@ public class VendaController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable long id) {
         try {
-         //   String mensagem = this.vendaService.delete(id);
         	String mensagem = this.vendaService.delete(id);
             return new ResponseEntity<>(mensagem, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
-    
-    //seleções
     
     @GetMapping("/cliente/{nomeCliente}")
     public List<Venda> buscarVendasPorNomeCliente(@PathVariable String nomeCliente) {

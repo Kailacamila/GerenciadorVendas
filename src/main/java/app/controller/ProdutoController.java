@@ -69,7 +69,6 @@ public class ProdutoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable long id) {
         try {
-         //   String mensagem = this.produtoService.delete(id);
         	String mensagem = this.produtoService.delete(id);
             return new ResponseEntity<>(mensagem, HttpStatus.OK);
         } catch (Exception e) {

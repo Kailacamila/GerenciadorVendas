@@ -11,10 +11,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 @Entity
 @Getter
@@ -27,8 +26,12 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
 	private long id;
+	@NotNull (message = "O campo do nome não pode ser vazio")
 	private String nome;
+	@NotNull  (message = "o campo de e-mail não pode estar vazio")
+	@Email    (message = "tem que estar no formato de e-mail")
 	private String email;
+
 	private int idade;
 	private String cep;
 	

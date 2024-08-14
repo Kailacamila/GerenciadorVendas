@@ -31,7 +31,7 @@ public class Venda {
 	@JsonIgnoreProperties("vendas")
 	private Cliente cliente;
 	
-	//bate e volta
+
 	@ManyToOne
 	@JsonIgnoreProperties("vendas")
 	private Funcionario funcionario;
@@ -43,5 +43,12 @@ public class Venda {
 	
 	
 	private double valorTotal;
+
+
+	public void setValorTotal(double valorTotal2) {
+
+
+		
+	}
 
 }

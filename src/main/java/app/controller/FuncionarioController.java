@@ -69,7 +69,6 @@ public class FuncionarioController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable long id) {
         try {
-         //   String mensagem = this.funcionarioService.delete(id);
         	String mensagem = this.funcionarioService.delete(id);
             return new ResponseEntity<>(mensagem, HttpStatus.OK);
         } catch (Exception e) {
