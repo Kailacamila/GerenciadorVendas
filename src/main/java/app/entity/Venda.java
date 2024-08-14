@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,21 +30,16 @@ public class Venda {
 
 	@ManyToOne
 	@JsonIgnoreProperties("vendas")
+	@NotNull (message = "A venda não pode ser realizado sem o cliente !!")
 	private Cliente cliente;
-	
-
 	@ManyToOne
 	@JsonIgnoreProperties("vendas")
 	private Funcionario funcionario;
-	
-	
 	@ManyToMany
 	@JoinTable(name="venda_tem_produto")
 	private List<Produto> produtos;
 	
-	
 	private double valorTotal;
-
 
 	public void setValorTotal(double valorTotal2) {
 

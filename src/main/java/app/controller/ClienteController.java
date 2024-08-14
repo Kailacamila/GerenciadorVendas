@@ -34,7 +34,6 @@ public class ClienteController {
 			return new ResponseEntity<>("Algo deu errado! " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
 	@PutMapping("/{id}")
 	public ResponseEntity<String> update(@RequestBody Cliente cliente, @PathVariable long id){
 		try {
@@ -45,7 +44,6 @@ public class ClienteController {
 			return new ResponseEntity<>("Algo deu errado!"+e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
-	
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> findById(@PathVariable long id) {
         try {
@@ -55,7 +53,6 @@ public class ClienteController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
-    
     @GetMapping("")
     public ResponseEntity<List<Cliente>> findAll() {
         try {
@@ -65,7 +62,6 @@ public class ClienteController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
-    
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable long id) {
         try {
