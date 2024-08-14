@@ -47,4 +47,39 @@ public class Venda {
 		
 	}
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public @NotNull(message = "A venda não pode ser realizado sem o cliente !!") Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(@NotNull(message = "A venda não pode ser realizado sem o cliente !!") Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+	public double getValorTotal() {
+		return valorTotal;
+	}
 }

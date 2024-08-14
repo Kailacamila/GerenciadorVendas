@@ -26,4 +26,37 @@ public class Produto {
 	private String descricao;
 	@NotNull (message = "O campo não pode estar vazio")
 	private double preco;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public @NotEmpty(message = "O nome do produto é obrigatório.") String getNome() {
+		return nome;
+	}
+
+	public void setNome(@NotEmpty(message = "O nome do produto é obrigatório.") String nome) {
+		this.nome = nome;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	@NotNull(message = "O campo não pode estar vazio")
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(@NotNull(message = "O campo não pode estar vazio") double preco) {
+		this.preco = preco;
+	}
 }

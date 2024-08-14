@@ -3,6 +3,7 @@ package app.service;
 import java.util.List;
 import java.util.Optional;
 
+import app.entity.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import jakarta.transaction.Transactional;
 public class VendaService {
 	@Autowired
 	private VendaRepository vendaRepositoy;
+    private Cliente cliente;
 	
 	@Transactional 
 	public String save(Venda venda) {
@@ -22,6 +24,9 @@ public class VendaService {
 		for(Produto produto : venda.getProdutos()) {
 			valorTotal+=produto.getPreco();
 		}
+        if (venda.getCliente().getIdade() <18 && valorTotal >=500){
+            throw new RuntimeException("Pedido recusado, por conta do cliente ser menor de 18 anos, seu limite e de R$500,00 ");
+        }
 		venda.setValorTotal(valorTotal);
 		this.vendaRepositoy.save(venda);
 		return "Venda salva com sucesso!"; 
