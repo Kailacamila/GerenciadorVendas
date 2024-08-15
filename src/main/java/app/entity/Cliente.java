@@ -17,8 +17,6 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cliente {
@@ -27,22 +25,30 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@NotNull (message = "O campo não pode estar vazio")
+	@NotNull(message = "O campo não pode estar vazio")
 	@Pattern(regexp = "^(\\w+\\s+\\w+).*$", message = "O nome deve conter pelo menos duas palavras separadas por um espaço.")
 	private String nome;
-	@NotNull  (message = "o campo de e-mail não pode estar vazio")
-	private String Telefone;
-	@Pattern(regexp = "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$")
-	@CPF
-	private String CPF;
-	@Email   (message = "Precisa estar no formato de e-mail")
+
+	@NotNull(message = "O campo de telefone não pode estar vazio")
+	@Pattern(regexp = "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$", message = "O telefone deve estar no formato (XX) XXXX-XXXX ou (XX) XXXXX-XXXX.")
+	private String telefone;
+
+	@NotNull(message = "O campo de CPF não pode estar vazio")
+	@CPF(message = "O CPF deve estar em um formato válido")
+	private String cpf;
+
+	@NotNull(message = "O campo de e-mail não pode estar vazio")
+	@Email(message = "O e-mail deve estar no formato válido")
 	private String email;
-    @Min(0)
-	@NotNull (message = "O campo não pode estar vazio")
-	private int idade;
+
+	@Min(value = 0, message = "A idade deve ser maior ou igual a 0")
+	@NotNull(message = "O campo de idade não pode estar vazio")
+	private Integer idade;
+
 	@OneToMany(mappedBy = "cliente")
 	@JsonIgnoreProperties("cliente")
 	private List<Venda> vendas;
+
 
 	public long getId() {
 		return id;
@@ -52,45 +58,43 @@ public class Cliente {
 		this.id = id;
 	}
 
-	public @NotNull(message = "O campo não pode estar vazio") @Pattern(regexp = "^(\\w+\\s+\\w+).*$", message = "O nome deve conter pelo menos duas palavras separadas por um espaço.") String getNome() {
+	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(@NotNull(message = "O campo não pode estar vazio") @Pattern(regexp = "^(\\w+\\s+\\w+).*$", message = "O nome deve conter pelo menos duas palavras separadas por um espaço.") String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public @NotNull(message = "o campo de e-mail não pode estar vazio") String getTelefone() {
-		return Telefone;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setTelefone(@NotNull(message = "o campo de e-mail não pode estar vazio") String telefone) {
-		Telefone = telefone;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
-	public @Pattern(regexp = "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$") String getCPF() {
-		return CPF;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setCPF(@Pattern(regexp = "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$") String CPF) {
-		this.CPF = CPF;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
-	public @org.hibernate.validator.constraints.br.CPF @Email(message = "Precisa estar no formato de e-mail") String getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(@org.hibernate.validator.constraints.br.CPF @Email(message = "Precisa estar no formato de e-mail") String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	@Min(0)
-	@NotNull(message = "O campo não pode estar vazio")
-	public int getIdade() {
+	public Integer getIdade() {
 		return idade;
 	}
 
-	public void setIdade(@Min(0) @NotNull(message = "O campo não pode estar vazio") int idade) {
+	public void setIdade(Integer idade) {
 		this.idade = idade;
 	}
 

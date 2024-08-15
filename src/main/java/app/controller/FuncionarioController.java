@@ -5,47 +5,42 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import app.entity.Funcionario;
-
 import app.service.FuncionarioService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/funcionario")
+@Validated  // Anotação para validar as requisições
 public class FuncionarioController {
-	@Autowired
-	private FuncionarioService funcionarioService;
-	
-	@PostMapping("")
-	public ResponseEntity<String> save(@RequestBody Funcionario funcionario){
-		try {
-			String mensagem = this.funcionarioService.save(funcionario);
-			return new ResponseEntity<>(mensagem,HttpStatus.OK);
-		} catch (Exception e) {
-			// TODO: handle exception
-			return new ResponseEntity<>("Algo deu errado! " + e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-	}
-	
-	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update(@RequestBody Funcionario funcionario, @PathVariable long id){
-		try {
-			String mensagem = this.funcionarioService.update(funcionario, id);
-			return new ResponseEntity<>(mensagem, HttpStatus.OK);
-		} catch (Exception e) {
-			// TODO: handle exception
-			return new ResponseEntity<>("Algo deu errado!"+e.getMessage(),HttpStatus.BAD_REQUEST);
-		}
-	}
-	
+
+    @Autowired
+    private FuncionarioService funcionarioService;
+
+    @PostMapping("")
+    public ResponseEntity<String> save(@Valid @RequestBody Funcionario funcionario){
+        try {
+            String mensagem = this.funcionarioService.save(funcionario);
+            return new ResponseEntity<>(mensagem,HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Algo deu errado! " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> update(@Valid @RequestBody Funcionario funcionario, @PathVariable long id){
+        try {
+            String mensagem = this.funcionarioService.update(funcionario, id);
+            return new ResponseEntity<>(mensagem, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Algo deu errado! " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Funcionario> findById(@PathVariable long id) {
         try {
@@ -55,7 +50,7 @@ public class FuncionarioController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     @GetMapping("")
     public ResponseEntity<List<Funcionario>> findAll() {
         try {
@@ -65,15 +60,14 @@ public class FuncionarioController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable long id) {
         try {
-        	String mensagem = this.funcionarioService.delete(id);
+            String mensagem = this.funcionarioService.delete(id);
             return new ResponseEntity<>(mensagem, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
-    
 }

@@ -10,11 +10,11 @@ import jakarta.validation.constraints.Pattern;
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @NotNull (message = "O Campo não pode estar vazio")
     private String rua;
-    @Max(8)
-    private String numero;
+    @NotNull (message = "O Campo não pode estar vazio")
+    private int numero;
     @NotNull (message = "O Campo não pode estar vazio")
     private String bairro;
     @NotNull (message = "O Campo não pode estar vazio")
@@ -27,7 +27,7 @@ public class Endereco {
 
     public Endereco() {}
 
-    public Endereco(int id, String rua, String numero, String bairro, String cidade, String estado, String cep) {
+    public Endereco(long id, String rua, int numero, String bairro, String cidade, String estado, String cep) {
         this.id = id;
         this.rua = rua;
         this.numero = numero;
@@ -37,11 +37,11 @@ public class Endereco {
         this.cep = cep;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -53,11 +53,11 @@ public class Endereco {
         this.rua = rua;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
