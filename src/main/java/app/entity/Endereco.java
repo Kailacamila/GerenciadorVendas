@@ -3,6 +3,7 @@ package app.entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
@@ -12,9 +13,13 @@ public class Endereco {
     private int id;
     @NotNull (message = "O Campo não pode estar vazio")
     private String rua;
+    @Max(8)
     private String numero;
+    @NotNull (message = "O Campo não pode estar vazio")
     private String bairro;
+    @NotNull (message = "O Campo não pode estar vazio")
     private String cidade;
+    @NotNull (message = "O Campo não pode estar vazio")
     private String estado;
     @Pattern(regexp = "\"\\\\d{5}-\\\\d{3}\", message = \"O CEP deve estar no formato 12345-678.\"")
     private String cep;

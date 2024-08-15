@@ -43,8 +43,6 @@ public class Venda {
 
 	public void setValorTotal(double valorTotal2) {
 
-
-		
 	}
 
 	public long getId() {
