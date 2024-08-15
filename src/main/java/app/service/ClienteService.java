@@ -18,13 +18,13 @@ public class ClienteService {
 	
 	public String save(Cliente cliente) {
 		this.clienteRepository.save(cliente);
-		return "Cliente foi cadastrado com sucesso!";
+		return "Cliente foi cadastrado com sucesso!!!";
 	}
 	
 	public String update(Cliente cliente, long id) {
 		cliente.setId(id);
 		this.clienteRepository.save(cliente);
-		return "Cliente atualizado com sucesso!";
+		return "Cliente atualizado com sucesso!!!";
 	}
 	
 	public Cliente findById(long id) {

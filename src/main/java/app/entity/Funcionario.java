@@ -43,8 +43,7 @@ public class Funcionario {
 	private String idade;
     @NotBlank (message = "A função não pode estar vazia")
 	private String funcao;
-	@Pattern(regexp = "\"\\\\d{5}-\\\\d{3}\", message = \"O CEP deve estar no formato 12345-678.\""  )
-	private String cep;
+
 	
 	@OneToMany(mappedBy = "funcionario")
 	@JsonIgnoreProperties("funcionario")
@@ -104,14 +103,6 @@ public class Funcionario {
 
 	public void setFuncao(@NotBlank(message = "A função não pode estar vazia") String funcao) {
 		this.funcao = funcao;
-	}
-
-	public @Pattern(regexp = "\"\\\\d{5}-\\\\d{3}\", message = \"O CEP deve estar no formato 12345-678.\"") String getCep() {
-		return cep;
-	}
-
-	public void setCep(@Pattern(regexp = "\"\\\\d{5}-\\\\d{3}\", message = \"O CEP deve estar no formato 12345-678.\"") String cep) {
-		this.cep = cep;
 	}
 
 	public List<Venda> getVendas() {

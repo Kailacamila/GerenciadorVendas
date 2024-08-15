@@ -19,7 +19,7 @@ import app.entity.Cliente;
 import app.service.ClienteService;
 
 @RestController
-@RequestMapping("/api/cliente")
+@RequestMapping("/api/cliente")  // os testes vem da contoller //
 public class ClienteController {
 	@Autowired
 	private ClienteService clienteService;

@@ -35,14 +35,11 @@ public class Cliente {
 	@Pattern(regexp = "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$")
 	@CPF
 	private String CPF;
-	@Email    (message = "Precisa estar no formato de e-mail")
+	@Email   (message = "Precisa estar no formato de e-mail")
 	private String email;
     @Min(0)
 	@NotNull (message = "O campo não pode estar vazio")
 	private int idade;
-	@Pattern(regexp = "\"\\\\d{5}-\\\\d{3}\", message = \"O CEP deve estar no formato 12345-678.\"")
-	private String cep;
-
 	@OneToMany(mappedBy = "cliente")
 	@JsonIgnoreProperties("cliente")
 	private List<Venda> vendas;
@@ -95,14 +92,6 @@ public class Cliente {
 
 	public void setIdade(@Min(0) @NotNull(message = "O campo não pode estar vazio") int idade) {
 		this.idade = idade;
-	}
-
-	public @Pattern(regexp = "\"\\\\d{5}-\\\\d{3}\", message = \"O CEP deve estar no formato 12345-678.\"") String getCep() {
-		return cep;
-	}
-
-	public void setCep(@Pattern(regexp = "\"\\\\d{5}-\\\\d{3}\", message = \"O CEP deve estar no formato 12345-678.\"") String cep) {
-		this.cep = cep;
 	}
 
 	public List<Venda> getVendas() {
