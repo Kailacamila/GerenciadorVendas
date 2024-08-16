@@ -19,7 +19,7 @@ public class VendaService {
     private Cliente cliente;
 	
 	@Transactional 
-	public String save(Venda venda) {  // Atividade verificar a logica esta certa !!
+	public String save(Venda venda) {
 		double valorTotal = 0.0;
 		for(Produto produto : venda.getProdutos()) {
 			valorTotal+=produto.getPreco();
