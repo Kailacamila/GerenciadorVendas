@@ -31,16 +31,15 @@ public class Funcionario {
 	@NotNull (message = "o campo não pode estar vazio")
 	@Pattern(regexp = "^(\\w+\\s+\\w+).*$", message = "O nome deve conter pelo menos duas palavras separadas por um espaço.")
 	private String nome;
-	@NotNull (message =  "O campo de e-mail não pode estar vazio")
-	@Email (message = "Precisa estar no formato de e-mail")
+	@Pattern(regexp = "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$", message = "O telefone deve estar no formato (XX) XXXX-XXXX ou (XX) XXXXX-XXXX.")
 	private String Telefone;
-	@Pattern(regexp = "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$")
+	@Email (message = "Precisa estar no formato de e-mail")
 	private String email;
 	@CPF
-	private String CPF;
+	private String cpf;
     @Max(130)
 	@NotNull (message = "O campo não pode estar vazio")
-	private String idade;
+	private int idade;
     @NotBlank (message = "A função não pode estar vazia")
 	private String funcao;
 
@@ -65,35 +64,37 @@ public class Funcionario {
 		this.nome = nome;
 	}
 
-	public @NotNull(message = "O campo de e-mail não pode estar vazio") @Email(message = "Precisa estar no formato de e-mail") String getTelefone() {
+	public @Pattern(regexp = "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$", message = "O telefone deve estar no formato (XX) XXXX-XXXX ou (XX) XXXXX-XXXX.") String getTelefone() {
 		return Telefone;
 	}
 
-	public void setTelefone(@NotNull(message = "O campo de e-mail não pode estar vazio") @Email(message = "Precisa estar no formato de e-mail") String telefone) {
+	public void setTelefone(@Pattern(regexp = "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$", message = "O telefone deve estar no formato (XX) XXXX-XXXX ou (XX) XXXXX-XXXX.") String telefone) {
 		Telefone = telefone;
 	}
 
-	public @Pattern(regexp = "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$") String getEmail() {
+	public @Email(message = "Precisa estar no formato de e-mail") String getEmail() {
 		return email;
 	}
 
-	public void setEmail(@Pattern(regexp = "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$") String email) {
+	public void setEmail(@Email(message = "Precisa estar no formato de e-mail") String email) {
 		this.email = email;
 	}
 
-	public String getCPF() {
-		return CPF;
+	public @CPF String getCpf() {
+		return cpf;
 	}
 
-	public void setCPF(String CPF) {
-		this.CPF = CPF;
+	public void setCpf(@CPF String cpf) {
+		this.cpf = cpf;
 	}
 
-	public @org.hibernate.validator.constraints.br.CPF @Max(130) @NotNull(message = "O campo não pode estar vazio") String getIdade() {
+	@Max(130)
+	@NotNull(message = "O campo não pode estar vazio")
+	public int getIdade() {
 		return idade;
 	}
 
-	public void setIdade(@org.hibernate.validator.constraints.br.CPF @Max(130) @NotNull(message = "O campo não pode estar vazio") String idade) {
+	public void setIdade(@Max(130) @NotNull(message = "O campo não pode estar vazio") int idade) {
 		this.idade = idade;
 	}
 

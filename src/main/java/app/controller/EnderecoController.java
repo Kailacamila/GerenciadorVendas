@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/enderecos")
+@RequestMapping("/api/endereco")
 @Validated  // Anotação para validar as requisições
 public class EnderecoController {
 
@@ -32,7 +32,7 @@ public class EnderecoController {
         return endereco.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<Endereco> createEndereco(@Valid @RequestBody Endereco endereco) {
         Endereco savedEndereco = enderecoService.save(endereco);
         return ResponseEntity.ok(savedEndereco);

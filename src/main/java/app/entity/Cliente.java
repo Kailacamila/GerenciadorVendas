@@ -45,6 +45,9 @@ public class Cliente {
 	@NotNull(message = "O campo de idade não pode estar vazio")
 	private Integer idade;
 
+	@OneToOne
+	private Endereco endereco;
+
 	@OneToMany(mappedBy = "cliente")
 	@JsonIgnoreProperties("cliente")
 	private List<Venda> vendas;
@@ -104,5 +107,13 @@ public class Cliente {
 
 	public void setVendas(List<Venda> vendas) {
 		this.vendas = vendas;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 }
