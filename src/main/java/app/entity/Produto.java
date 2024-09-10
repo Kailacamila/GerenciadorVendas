@@ -15,8 +15,6 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,6 +52,16 @@ public class Produto {
 	@NotNull(message = "O campo não pode estar vazio")
 	public double getPreco() {
 		return preco;
+	}
+
+	public Produto(long id, String nome, String descricao, double preco) {
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.preco = preco;
+	}
+
+	public Produto() {
 	}
 
 	public void setPreco(@NotNull(message = "O campo não pode estar vazio") double preco) {

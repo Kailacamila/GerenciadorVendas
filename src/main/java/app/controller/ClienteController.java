@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import app.entity.Cliente;
 import app.service.ClienteService;
 
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/cliente")
@@ -22,7 +21,7 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @PostMapping("")
-    public ResponseEntity<String> save(@Valid @RequestBody Cliente cliente) {
+    public ResponseEntity<String> save( @RequestBody Cliente cliente) {
         try {
             String mensagem = this.clienteService.save(cliente);
             return new ResponseEntity<>(mensagem, HttpStatus.OK);
@@ -32,7 +31,7 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> update(@Valid @RequestBody Cliente cliente, @PathVariable long id) {
+    public ResponseEntity<String> update( @RequestBody Cliente cliente, @PathVariable long id) {
         try {
             String mensagem = this.clienteService.update(cliente, id);
             return new ResponseEntity<>(mensagem, HttpStatus.OK);

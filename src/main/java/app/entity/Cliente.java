@@ -17,8 +17,6 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 public class Cliente {
 
 	@Id
@@ -115,5 +113,20 @@ public class Cliente {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+	public Cliente(long id, String nome, String telefone, String cpf, String email, Integer idade, Endereco endereco, List<Venda> vendas) {
+		this.id = id;
+		this.nome = nome;
+		this.telefone = telefone;
+		this.cpf = cpf;
+		this.email = email;
+		this.idade = idade;
+		this.endereco = endereco;
+		this.vendas = vendas;
+	}
+
+	public Cliente() {
+
 	}
 }

@@ -20,10 +20,8 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Venda {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -38,7 +36,7 @@ public class Venda {
 	@ManyToMany
 	@JoinTable(name="venda_tem_produto")
 	private List<Produto> produtos;
-	
+
 	private double valorTotal;
 
 	public void setValorTotal(double valorTotal2) {
@@ -79,5 +77,16 @@ public class Venda {
 
 	public double getValorTotal() {
 		return valorTotal;
+	}
+
+	public Venda(long id, Cliente cliente, Funcionario funcionario, List<Produto> produtos, double valorTotal) {
+		this.id = id;
+		this.cliente = cliente;
+		this.funcionario = funcionario;
+		this.produtos = produtos;
+		this.valorTotal = valorTotal;
+	}
+
+	public Venda() {
 	}
 }

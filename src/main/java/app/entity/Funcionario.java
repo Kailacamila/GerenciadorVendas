@@ -19,10 +19,6 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Funcionario {
 
 	@Id
@@ -112,5 +108,28 @@ public class Funcionario {
 
 	public void setVendas(List<Venda> vendas) {
 		this.vendas = vendas;
+	}
+
+	public Funcionario(long id, String nome, String telefone, String email, String cpf, int idade, String funcao, List<Venda> vendas) {
+		this.id = id;
+		this.nome = nome;
+		Telefone = telefone;
+		this.email = email;
+		this.cpf = cpf;
+		this.idade = idade;
+		this.funcao = funcao;
+		this.vendas = vendas;
+	}
+	public Funcionario(long id, String nome, String telefone, String email, String cpf, int idade, String funcao) {
+		this.id = id;
+		this.nome = nome;
+		Telefone = telefone;
+		this.email = email;
+		this.cpf = cpf;
+		this.idade = idade;
+		this.funcao = funcao;
+	}
+
+	public Funcionario() {
 	}
 }
